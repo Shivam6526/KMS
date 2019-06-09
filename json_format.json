@@ -1,0 +1,53 @@
+{"metadata":   
+	    [
+		   {  
+           "tablename": "dq_rules_configuration",		   
+		   "operation":"I",
+		   "key":{},
+		   "value": {
+		        "tablename": "Tb_1",
+				"fieldname": "col_2",
+				"effdt": "2019-05-17",
+				"rule_id": "4",
+				"rule_condition": "",
+				"error_condition": ""
+				}
+		   
+		   },
+        
+            {
+			"tablename": "wrk_calendar",
+            "operation": "I",
+            "key": {},
+            "value": {
+                "year_no": "2019",
+                "month": "5",
+                "day": "2",
+                "date": "2019-5-24"				
+				}
+	        },
+       
+            {
+			"tablename":  "dq_rules_configuration",
+			"operation": "U",
+			"key": {
+			    "tablename": "Tb_2",
+				"fieldname": "col_1",
+				"effdt": "2019-05-01",
+				"rule_id": "3"
+			    },			
+			"value": {
+				"tablename": "Tb_2",
+				"fieldname": "col_1",
+				"effdt": "2019-05-01",
+			    "rule_id": "2",
+				"rule_condition": "",
+				"error_condition":""				
+                }			
+	        }
+		]
+		
+    
+}
+
+

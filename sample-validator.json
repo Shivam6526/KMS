@@ -1,0 +1,102 @@
+{   
+    "type":"object",
+	
+	"definitions": {
+	    "dq_rules_configuration" : {
+		    "type": "object",
+			"properties": {
+			    "tablename": {"type": "string"},
+				"fieldname": {"type": "string"},
+				"effdt": {"type": "string"},
+				"eff_seq": {"type": "integer"},
+				"rule_id": {"type": "integer"},
+				"rule_condition": {"type": "string"},
+				"error_condition": {"type": "string"},
+				"lastupddate": {"type": "string"},
+				"lastupdby": {"type": "string"},
+				"status_flag": {"type": "string"}
+			}
+		},
+		"dq_master_table": {
+		    "type": "object",
+			"properties": {
+			    "rule_id": {"type": "integer"},
+				"rule_name": {"type": "string"},
+				"file_name": {"type": "string"},
+				"rule_desc": {"type": "string"},
+				"status_flag": {"type": "string"},
+				"lastupddate": {"type": "string"},
+				"lastupdby": {"type": "string"}
+			}
+		},
+		"file_expd_list": {
+		    "type": "object",
+			"properties": {
+			    "src_sys_nm": {"type": "string"},
+				"file_prefix_nm": {"type": "string"},
+				"file_schd": {"type": "string"},
+				"file_size": {"type": "integer"},				
+				"days_schd": {"type": "string"},
+				"time_of_arrival": {"type": "string"},
+				"time_deviation": {"type": "integer"},
+				"lst_updt_time": {"type": "string"},
+				"calendar_type": {"type": "string"},
+				"unscheduled_arrival_flg": {"type": "boolean"},
+				"lastupdby": {"type": "string"},
+				"status_flag": {"type": "string"}
+			}
+		}
+	},
+	
+	"properties": {
+	    "metadata": {
+		    "type": "array",
+			"items": {
+			    "type": "object",
+				"properties": {
+				    "tablename": {
+					    "type": "string",
+						"enum": ["dq_rules_configuration","dq_master_table","file_expd_list","file_schema_info","wrk_calendar","holiday_calendar"]
+					},
+					"operation": {
+					    "type": "string",
+						"maxlength" : 1,
+						"enum": ["I","U","D"]
+					}		
+					
+				},
+				"required": ["tablename"],
+				
+				"allOf": [
+				    {
+					    "if": {
+						    "properties": { "tablename": { "const" : "dq_rules_configuration"}}
+						},
+						"then": {
+						    "properties": { "key": { "$ref": "#/definitions/dq_rules_configuration"}}
+						}
+						    
+					},
+					{
+					    "if": {
+						     "properties": { "tablename": { "const" : "dq_master_table"}}
+						},
+						"then": {
+						    "properties": { "key": { "$ref": "#/definitions/dq_master_table"}}
+						}   
+					},
+					{
+					    "if": {
+						     "properties": { "tablename": { "const" : "file_expd_list"}}
+						},
+						"then": {
+						    "properties": { "key": { "$ref": "#/definitions/file_expd_list"}}
+						} 
+					}
+				]
+			}
+		}
+	}
+}
+					
+					
